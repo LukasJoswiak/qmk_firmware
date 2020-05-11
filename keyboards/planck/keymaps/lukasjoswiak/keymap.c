@@ -22,6 +22,7 @@ extern keymap_config_t keymap_config;
 enum planck_layers {
   _DVORAK,
   _QWERTY,
+  _GAMING,
   _LOWER,
   _RAISE,
   _FN,
@@ -31,6 +32,7 @@ enum planck_layers {
 enum planck_keycodes {
   DVORAK = SAFE_RANGE,
   QWERTY,
+  GAMING,
   DOUBLE_COLON,
   DOUBLE_LT
 };
@@ -78,6 +80,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT ,
     FN, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_ESC,  KC_SPC,  RAISE,   _______, _______, _______, _______
+),
+
+/* Gaming
+ * ,-----------------------------------------------------------------------------------.
+ * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |Enter |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Ctrl |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |   B  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Shift|      | Alt  | GUI  |Space | Esc  |      |      |      |      |Lower |Raise |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_GAMING] = LAYOUT_planck_grid(
+    KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+    KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_B,
+    KC_LSFT, _______, KC_LALT, KC_LGUI, KC_SPC,   KC_ESC,  _______,  _______,   _______, _______, LOWER, RAISE
 ),
 
 /* Lower
@@ -139,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |Reset |      |      |      |      |      |      |      |      |      |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|      |      |      |      |Qwerty|Dvorak|      |
+ * |      |      |      |Aud on|Audoff|      |      |      |      |Qwerty|Dvorak|Gaming|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -148,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_planck_grid(
     _______, RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL,
-    _______, _______, _______, AU_ON, AU_OFF, _______, _______, _______, _______, QWERTY, DVORAK, _______,
+    _______, _______, _______, AU_ON, AU_OFF, _______, _______, _______, _______, QWERTY, DVORAK, GAMING,
     _______, MUV_DE, MUV_IN, MU_ON, MU_OFF, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_A
 )
@@ -169,6 +189,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         print("mode just switched to qwerty and this is a huge string\n");
         set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case GAMING:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_GAMING);
       }
       return false;
       break;
