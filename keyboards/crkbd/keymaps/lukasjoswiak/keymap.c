@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_EXLM, KC_HASH, KC_UNDS, KC_MINS,   KC_AT,                      KC_CIRC, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU,                      XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,\
+      KC_LSFT, KC_MPRV, XXXXXXX, KC_MNXT, KC_VOLD, KC_VOLU,                      XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI,   LOWER,  KC_ESC,     KC_SPC,   RAISE, KC_RALT \
                                       //`--------------------------'  `--------------------------'
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LBRC, KC_LCBR, KC_RCBR, KC_LPRN, KC_AMPR,                      KC_ASTR, KC_RPRN,  KC_EQL, KC_PLUS, KC_RBRC,  KC_ENT,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_DLR, XXXXXXX,KC_GRAVE, KC_BSLS, XXXXXXX,\
+      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_DLR, KC_MPLY,KC_GRAVE, KC_BSLS, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI,   LOWER,  KC_ESC,     KC_SPC,   RAISE, KC_RALT \
                                       //`--------------------------'  `--------------------------'
