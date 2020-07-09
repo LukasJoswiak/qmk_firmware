@@ -25,7 +25,9 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   BACKLIT,
-  RGBRST
+  RGBRST,
+  D_COLON,
+  D_LTHAN
 };
 
 enum macro_keycodes {
@@ -61,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, XXXXXXX, XXXXXXX, XXXXXXX,KC_COLON, XXXXXXX,                      XXXXXXX, KC_TILD, KC_PERC, KC_BSLS, KC_PIPE, KC_BSPC,\
+       KC_TAB, D_COLON, D_LTHAN, XXXXXXX,KC_COLON, XXXXXXX,                      XXXXXXX, KC_TILD, KC_PERC, KC_BSLS, KC_PIPE, KC_BSPC,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_EXLM, KC_HASH, KC_UNDS, KC_MINS,   KC_AT,                      KC_CIRC, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -231,6 +233,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           RGB_current_mode = rgblight_config.mode;
         }
       #endif
+      break;
+    case D_COLON:
+      if (record->event.pressed) {
+        SEND_STRING("::");
+      }
+      break;
+    case D_LTHAN:
+      if (record->event.pressed) {
+        SEND_STRING("<<");
+      }
       break;
   }
   return true;
